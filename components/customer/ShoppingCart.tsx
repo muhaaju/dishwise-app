@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useCartStore } from '@/lib/store/cart';
 import { formatCurrency } from '@/lib/utils/calculations';
 
 export default function ShoppingCart() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -49,21 +51,12 @@ export default function ShoppingCart() {
 
   // Don't render until mounted to avoid hydration mismatch
   if (!isMounted) {
-    return (
-      <div className="fixed bottom-8 right-8 z-50">
-        <button className="bg-white border-2 border-gray-300 text-gray-400 px-6 py-4 rounded-2xl shadow-lg flex items-center gap-3 cursor-default">
-          <div className="relative">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </div>
-          <div className="text-left">
-            <div className="text-sm font-semibold">Cart</div>
-            <div className="text-xs">Loading...</div>
-          </div>
-        </button>
-      </div>
-    );
+    return null;
+  }
+
+  // Hide cart on home page (landing page)
+  if (pathname === '/') {
+    return null;
   }
 
   return (

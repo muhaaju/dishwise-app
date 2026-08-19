@@ -9,7 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // DishWise Brand Colors
+        // Figma Dark Theme Colors
+        bg: '#0c0a09',
+        surface: '#161310',
+        card: '#1e1a16',
+        'card-hover': '#262118',
+        border: '#302b25',
+        cream: '#f5f0e8',
+        'cream-dim': '#c5bdb4',
+        muted: '#7a7068',
+        amber: '#f59e0b',
+        'amber-light': '#fde68a',
+        'amber-dark': '#b45309',
+        orange: '#ea580c',
+        green: '#16a34a',
+        'green-light': '#bbf7d0',
+        
+        // Original DishWise Brand Colors (Light Theme)
         primary: {
           DEFAULT: '#FFBE29',
           dark: '#E6A824',
@@ -17,23 +33,23 @@ const config: Config = {
           50: '#FFF9E6',
           100: '#FFF3CC',
         },
-        // Brand Colors
         'brand-yellow': '#FFBE29',
         'accent-red': '#F4524E',
         'accent-blue': '#6294F7',
+        
         // Neutral Colors
         foreground: '#2B2B2B',
         secondary: '#3D4152',
-        muted: 'rgba(43, 43, 43, 0.6)',
         'muted-light': 'rgba(43, 43, 43, 0.3)',
-        border: 'rgba(43, 43, 43, 0.1)',
+        
         // Semantic Colors
         success: '#1BA672',
         savings: '#4CAF50',
         warning: '#FFBE29',
         error: '#F4524E',
         info: '#6294F7',
-        // Background Colors
+        
+        // Background Colors (Light Theme)
         'bg-primary': '#FFFFFF',
         'bg-subtle': '#EAEAEA',
         'bg-secondary': '#FAFAFA',
@@ -41,6 +57,7 @@ const config: Config = {
         'bg-footer': '#2B2B2B',
         'bg-hero': '#2B2B2B',
         background: '#F5F5F5',
+        
         // Text Colors
         'text-main': '#2B2B2B',
         'text-secondary': 'rgba(43, 43, 43, 0.7)',
@@ -50,16 +67,19 @@ const config: Config = {
           muted: 'rgba(43, 43, 43, 0.5)',
           secondary: 'rgba(43, 43, 43, 0.7)',
         },
+        
         // CTA Colors
         cta: {
           DEFAULT: '#FFBE29',
           dark: '#E6A824',
         },
+        
         // Highlight Colors
         highlight: {
           DEFAULT: '#4CAF50',
           dark: '#388E3C',
         },
+        
         // Gray Scale
         gray: {
           50: '#FAFAFA',
@@ -77,6 +97,8 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         heading: ['var(--font-poppins)', 'Poppins', 'Inter', 'sans-serif'],
+        display: ['Fraunces', 'serif'],
+        body: ['Inter', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       spacing: {
@@ -99,6 +121,7 @@ const config: Config = {
         'slide-up': 'slideUp 0.3s ease-out',
         'slide-in-right': 'slideInRight 0.3s ease-out',
         'pulse-glow': 'pulseGlow 2s infinite',
+        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         shimmer: {
@@ -120,6 +143,10 @@ const config: Config = {
         pulseGlow: {
           '0%, 100%': { boxShadow: '0 0 0 0 rgba(255, 190, 41, 0.4)' },
           '50%': { boxShadow: '0 0 0 8px rgba(255, 190, 41, 0)' },
+        },
+        pulse: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '.5' },
         },
       },
     },

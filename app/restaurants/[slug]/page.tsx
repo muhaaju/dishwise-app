@@ -178,10 +178,10 @@ export default function RestaurantDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-text-muted">Loading restaurant...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber mx-auto mb-4"></div>
+          <p className="text-muted">Loading restaurant...</p>
         </div>
       </div>
     );
@@ -189,13 +189,13 @@ export default function RestaurantDetailPage() {
 
   if (error || !restaurant) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen bg-bg flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-primary mb-4">Restaurant Not Found</h1>
-          <p className="text-text-muted mb-6">{error || 'The restaurant you are looking for does not exist.'}</p>
+          <h1 className="text-2xl font-bold text-cream mb-4">Restaurant Not Found</h1>
+          <p className="text-muted mb-6">{error || 'The restaurant you are looking for does not exist.'}</p>
           <Link 
             href="/restaurants"
-            className="px-6 py-3 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-all"
+            className="px-6 py-3 bg-amber text-bg rounded-xl font-semibold hover:bg-amber-light transition-all"
           >
             Back to Restaurants
           </Link>
@@ -232,37 +232,37 @@ export default function RestaurantDetailPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation Bar - Modern */}
-      <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 backdrop-blur-lg bg-white/95">
+      <nav className="bg-surface border-b border-border sticky top-0 z-50 backdrop-blur-lg bg-surface/95">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Back & Logo */}
             <div className="flex items-center gap-4">
               <Link 
                 href="/restaurants" 
-                className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-gray-100 transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-card transition-colors"
               >
-                <svg className="w-6 h-6 text-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-cream" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </Link>
               <Link href="/" className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-light rounded-xl flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-br from-amber to-orange rounded-xl flex items-center justify-center">
                   <span className="text-2xl">🍽️</span>
                 </div>
-                <span className="text-2xl font-display font-bold text-primary hidden sm:block">DishWise</span>
+                <span className="text-2xl font-display font-bold text-amber hidden sm:block">DishWise</span>
               </Link>
             </div>
 
             {/* Restaurant Name - Shows on Scroll */}
             {isScrolled && (
               <div className="hidden md:block animate-fade-in">
-                <h2 className="text-xl font-bold text-primary">{restaurant.name}</h2>
+                <h2 className="text-xl font-bold text-cream">{restaurant.name}</h2>
               </div>
             )}
 
             {/* Actions */}
             <div className="flex items-center gap-3">
-              <button className="hidden md:flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-xl transition-colors">
+              <button className="hidden md:flex items-center gap-2 px-4 py-2 text-cream-dim hover:bg-card rounded-xl transition-colors">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                 </svg>
@@ -270,7 +270,7 @@ export default function RestaurantDetailPage() {
               </button>
               <Link 
                 href="/track-order" 
-                className="px-4 py-2 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark transition-all"
+                className="px-4 py-2 bg-amber text-bg rounded-xl font-semibold hover:bg-amber-light transition-all"
               >
                 Track Order
               </Link>
@@ -280,7 +280,7 @@ export default function RestaurantDetailPage() {
       </nav>
 
       {/* Restaurant Header - Hero Style */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-surface border-b border-border">
         <div className="container mx-auto px-4 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Restaurant Image - Larger */}
@@ -294,15 +294,15 @@ export default function RestaurantDetailPage() {
                     className="object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-primary via-primary-light to-highlight flex items-center justify-center">
+                  <div className="w-full h-full bg-gradient-to-br from-amber via-orange to-amber-light flex items-center justify-center">
                     <span className="text-7xl opacity-90">🍽️</span>
                   </div>
                 )}
                 
                 {/* Status Badge */}
                 <div className="absolute top-4 right-4">
-                  <div className="bg-green-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1.5">
-                    <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                  <div className="bg-green text-bg px-3 py-1.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-1.5">
+                    <span className="w-2 h-2 bg-bg rounded-full animate-pulse"></span>
                     <span>OPEN NOW</span>
                   </div>
                 </div>
@@ -314,14 +314,14 @@ export default function RestaurantDetailPage() {
               {/* Name & Rating */}
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
-                  <h1 className="text-4xl font-display font-bold text-primary mb-2">
+                  <h1 className="text-4xl font-display font-bold text-cream mb-2">
                     {restaurant.name}
                   </h1>
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold">
+                    <span className="px-3 py-1 bg-amber/10 text-amber rounded-full text-sm font-semibold">
                       {restaurant.cuisine_type}
                     </span>
-                    <div className="flex items-center gap-1 bg-green-500 text-white px-3 py-1 rounded-lg text-sm font-bold">
+                    <div className="flex items-center gap-1 bg-green text-bg px-3 py-1 rounded-lg text-sm font-bold">
                       <span>⭐</span>
                       <span>4.5</span>
                       <span className="text-xs opacity-90">(500+ ratings)</span>
@@ -330,75 +330,75 @@ export default function RestaurantDetailPage() {
                 </div>
                 
                 {/* Favorite Button */}
-                <button className="w-12 h-12 flex items-center justify-center rounded-xl border-2 border-gray-200 hover:border-red-500 hover:bg-red-50 transition-all group">
-                  <svg className="w-6 h-6 text-gray-400 group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button className="w-12 h-12 flex items-center justify-center rounded-xl border-2 border-border hover:border-red hover:bg-red/10 transition-all group">
+                  <svg className="w-6 h-6 text-muted group-hover:text-red transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                 </button>
               </div>
 
               {/* Description */}
-              <p className="text-text-muted mb-6 leading-relaxed text-lg">
+              <p className="text-muted mb-6 leading-relaxed text-lg">
                 {restaurant.description}
               </p>
 
               {/* Meta Info Grid */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 p-3 bg-card rounded-xl border border-border">
+                  <div className="w-10 h-10 bg-amber/10 rounded-lg flex items-center justify-center">
+                    <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="text-xs text-text-muted">Prep Time</div>
-                    <div className="font-bold text-primary">{restaurant.avg_prep_time_minutes} mins</div>
+                    <div className="text-xs text-muted">Prep Time</div>
+                    <div className="font-bold text-cream">{restaurant.avg_prep_time_minutes} mins</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 p-3 bg-card rounded-xl border border-border">
+                  <div className="w-10 h-10 bg-amber/10 rounded-lg flex items-center justify-center">
+                    <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="text-xs text-text-muted">Location</div>
-                    <div className="font-bold text-primary line-clamp-1">{restaurant.city}</div>
+                    <div className="text-xs text-muted">Location</div>
+                    <div className="font-bold text-cream line-clamp-1">{restaurant.city}</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
-                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                    <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 p-3 bg-card rounded-xl border border-border">
+                  <div className="w-10 h-10 bg-amber/10 rounded-lg flex items-center justify-center">
+                    <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="text-xs text-text-muted">Contact</div>
-                    <div className="font-bold text-primary">{restaurant.phone}</div>
+                    <div className="text-xs text-muted">Contact</div>
+                    <div className="font-bold text-cream">{restaurant.phone}</div>
                   </div>
                 </div>
               </div>
 
               {/* Savings Banner - Prominent */}
-              <div className="bg-gradient-to-r from-highlight/20 to-highlight/10 border-2 border-highlight/30 rounded-2xl p-5">
+              <div className="bg-gradient-to-r from-green/20 to-green/10 border-2 border-green/30 rounded-2xl p-5">
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-highlight rounded-xl flex items-center justify-center text-3xl flex-shrink-0">
+                  <div className="w-14 h-14 bg-green rounded-xl flex items-center justify-center text-3xl flex-shrink-0">
                     💰
                   </div>
                   <div className="flex-1">
-                    <div className="font-bold text-highlight-dark text-lg mb-1">
+                    <div className="font-bold text-green-light text-lg mb-1">
                       Save ₹70-150 per order
                     </div>
-                    <div className="text-sm text-text-muted">
+                    <div className="text-sm text-muted">
                       Order direct and skip platform fees • No delivery charges
                     </div>
                   </div>
                   <Link 
                     href="/#how-it-works"
-                    className="hidden md:block px-6 py-3 bg-highlight text-white rounded-xl font-bold hover:bg-highlight-dark transition-all whitespace-nowrap"
+                    className="hidden md:block px-6 py-3 bg-green text-bg rounded-xl font-bold hover:bg-green-light transition-all whitespace-nowrap"
                   >
                     Learn More
                   </Link>
@@ -410,7 +410,7 @@ export default function RestaurantDetailPage() {
       </div>
 
       {/* Category Tabs - Modern Sticky */}
-      <div className="bg-white border-b border-gray-100 sticky top-20 z-40 shadow-sm">
+      <div className="bg-surface border-b border-border sticky top-20 z-40 shadow-sm">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="flex gap-2 overflow-x-auto scrollbar-hide py-4">
             {categories.map((category) => (
@@ -419,15 +419,15 @@ export default function RestaurantDetailPage() {
                 onClick={() => scrollToCategory(category)}
                 className={`px-6 py-3 rounded-xl font-bold whitespace-nowrap transition-all ${
                   activeCategory === category
-                    ? 'bg-primary text-white shadow-lg scale-105'
-                    : 'bg-gray-100 text-text hover:bg-gray-200'
+                    ? 'bg-amber text-bg shadow-lg scale-105'
+                    : 'bg-card text-cream-dim hover:bg-card-hover border border-border'
                 }`}
               >
                 <span>{category}</span>
                 <span className={`ml-2 text-xs px-2 py-0.5 rounded-full ${
                   activeCategory === category
-                    ? 'bg-white/20'
-                    : 'bg-white'
+                    ? 'bg-bg/20'
+                    : 'bg-surface'
                 }`}>
                   {groupedMenuItems[category].length}
                 </span>
@@ -445,12 +445,12 @@ export default function RestaurantDetailPage() {
               {/* Category Header - Enhanced */}
               <div className="mb-8">
                 <div className="flex items-center gap-4 mb-3">
-                  <h2 className="text-3xl font-display font-bold text-primary">
+                  <h2 className="text-3xl font-display font-bold text-cream">
                     {category}
                   </h2>
-                  <div className="h-1 flex-1 bg-gradient-to-r from-primary/20 to-transparent rounded-full"></div>
+                  <div className="h-1 flex-1 bg-gradient-to-r from-amber/20 to-transparent rounded-full"></div>
                 </div>
-                <p className="text-text-muted text-lg">
+                <p className="text-muted text-lg">
                   {groupedMenuItems[category].length} delicious {groupedMenuItems[category].length === 1 ? 'item' : 'items'} to choose from
                 </p>
               </div>
@@ -472,14 +472,14 @@ export default function RestaurantDetailPage() {
         {/* Info Cards - Modern Grid */}
         <div className="max-w-5xl mx-auto mt-16 grid md:grid-cols-2 gap-6">
           {/* How It Works Card */}
-          <div className="bg-white rounded-3xl p-8 shadow-card border border-gray-100">
+          <div className="bg-card rounded-3xl p-8 shadow-card border border-border">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-amber/10 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-primary">How It Works</h3>
+              <h3 className="text-2xl font-bold text-cream">How It Works</h3>
             </div>
             <ol className="space-y-4">
               {[
@@ -489,63 +489,63 @@ export default function RestaurantDetailPage() {
                 'Enjoy your savings!'
               ].map((step, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <div className="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center font-bold flex-shrink-0">
+                  <div className="w-8 h-8 bg-amber text-bg rounded-lg flex items-center justify-center font-bold flex-shrink-0">
                     {index + 1}
                   </div>
-                  <span className="text-text-muted pt-1">{step}</span>
+                  <span className="text-muted pt-1">{step}</span>
                 </li>
               ))}
             </ol>
           </div>
 
           {/* Restaurant Info Card */}
-          <div className="bg-white rounded-3xl p-8 shadow-card border border-gray-100">
+          <div className="bg-card rounded-3xl p-8 shadow-card border border-border">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-                <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-12 h-12 bg-amber/10 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-primary">Contact Info</h3>
+              <h3 className="text-2xl font-bold text-cream">Contact Info</h3>
             </div>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-primary mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-amber mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 <div>
-                  <div className="font-semibold text-primary mb-1">Address</div>
-                  <div className="text-text-muted">{restaurant.address}</div>
+                  <div className="font-semibold text-cream mb-1">Address</div>
+                  <div className="text-muted">{restaurant.address}</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-primary mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-amber mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 <div>
-                  <div className="font-semibold text-primary mb-1">Phone</div>
-                  <div className="text-text-muted">{restaurant.phone}</div>
+                  <div className="font-semibold text-cream mb-1">Phone</div>
+                  <div className="text-muted">{restaurant.phone}</div>
                 </div>
               </div>
               {restaurant.email && (
                 <div className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-primary mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-amber mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                   <div>
-                    <div className="font-semibold text-primary mb-1">Email</div>
-                    <div className="text-text-muted">{restaurant.email}</div>
+                    <div className="font-semibold text-cream mb-1">Email</div>
+                    <div className="text-muted">{restaurant.email}</div>
                   </div>
                 </div>
               )}
               <div className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-primary mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-amber mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div>
-                  <div className="font-semibold text-primary mb-1">Hours</div>
-                  <div className="text-text-muted">{restaurant.opening_time} - {restaurant.closing_time}</div>
+                  <div className="font-semibold text-cream mb-1">Hours</div>
+                  <div className="text-muted">{restaurant.opening_time} - {restaurant.closing_time}</div>
                 </div>
               </div>
             </div>

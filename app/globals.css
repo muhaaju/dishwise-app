@@ -1,16 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..400&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 /* ============================================================================
-   DishWise Design System - Swiggy-Inspired
+   DishWise Design System - Dark Theme (Figma)
    ============================================================================ */
 
 @theme {
-  /* New Brand Colors */
+  /* Figma Dark Theme Colors */
+  --color-bg: #0c0a09;
+  --color-surface: #161310;
+  --color-card: #1e1a16;
+  --color-card-hover: #262118;
+  --color-border: #302b25;
+  --color-cream: #f5f0e8;
+  --color-cream-dim: #c5bdb4;
+  --color-muted: #7a7068;
+  --color-amber: #f59e0b;
+  --color-amber-light: #fde68a;
+  --color-amber-dark: #b45309;
+  --color-orange: #ea580c;
+  --color-green: #16a34a;
+  --color-green-light: #bbf7d0;
+  
+  /* Original Brand Colors (Light Theme) */
   --color-brand-yellow: #FFBE29;
   --color-accent-red: #F4524E;
   --color-accent-blue: #6294F7;
   
-  /* Primary Colors (using brand yellow as primary) */
+  /* Primary Colors */
   --color-primary: #FFBE29;
   --color-primary-dark: #E6A824;
   --color-primary-light: #FFD166;
@@ -18,12 +35,9 @@
   --color-primary-100: #FFF3CC;
   
   /* Neutral Colors */
-  --color-background: #FFFFFF;
   --color-foreground: #2B2B2B;
   --color-secondary: #3D4152;
-  --color-muted: rgba(43, 43, 43, 0.6);
   --color-muted-light: rgba(43, 43, 43, 0.3);
-  --color-border: rgba(43, 43, 43, 0.1);
   
   /* Semantic Colors */
   --color-success: #1BA672;
@@ -32,13 +46,14 @@
   --color-error: #F4524E;
   --color-info: #6294F7;
   
-  /* Background Colors */
+  /* Background Colors (Light Theme) */
   --color-bg-primary: #FFFFFF;
   --color-bg-subtle: #EAEAEA;
   --color-bg-secondary: #FAFAFA;
   --color-bg-card: #FFFFFF;
   --color-bg-footer: #2B2B2B;
   --color-bg-hero: #2B2B2B;
+  --color-background: #F5F5F5;
   
   /* Text Colors */
   --color-text-main: #2B2B2B;
@@ -58,15 +73,46 @@
   --color-gray-900: #2B2B2B;
   
   /* Font Family */
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', sans-serif;
   --font-sans: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-heading: var(--font-poppins), "Poppins", "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
-  
-  /* Animations */
-  --animate-shimmer: shimmer 1.5s infinite linear;
-  --animate-spin-slow: spin 2s infinite linear;
-  --animate-fade-in: fadeIn 0.3s ease-in-out;
-  --animate-slide-up: slideUp 0.3s ease-out;
+}
+
+/* ============================================================================
+   Base Styles
+   ============================================================================ */
+
+*, *::before, *::after {
+  scrollbar-width: thin;
+  scrollbar-color: #302b25 transparent;
+}
+
+::-webkit-scrollbar { 
+  width: 6px; 
+  height: 6px; 
+}
+
+::-webkit-scrollbar-track { 
+  background: transparent; 
+}
+
+::-webkit-scrollbar-thumb { 
+  background: #302b25; 
+  border-radius: 3px; 
+}
+
+html { 
+  scroll-behavior: smooth; 
+}
+
+body {
+  background-color: #0c0a09;
+  color: #f5f0e8;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ============================================================================
@@ -114,25 +160,13 @@
   }
 }
 
-/* ============================================================================
-   Base Styles
-   ============================================================================ */
-
-:root {
-  --color-bg-primary: #FFFFFF;
-  --color-bg-subtle: #EAEAEA;
-  --color-brand-yellow: #FFBE29;
-  --color-accent-red: #F4524E;
-  --color-accent-blue: #6294F7;
-  --color-text-main: #2B2B2B;
-  --background: 0 0% 100%;
-  --foreground: 222 47% 4%;
-  --radius: 0px;
-}
-
-/* Tailwind v4 preflight fix */
-.mx-auto {
-  margin-inline: auto !important;
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1; 
+  }
+  50% { 
+    opacity: .5; 
+  }
 }
 
 /* ============================================================================
@@ -236,20 +270,12 @@
    ============================================================================ */
 
 *:focus-visible {
-  outline: 2px solid var(--color-brand-yellow);
+  outline: 2px solid var(--color-amber);
   outline-offset: 2px;
 }
 
 button:focus-visible {
-  outline: 2px solid var(--color-brand-yellow);
-}
-
-/* ============================================================================
-   Smooth Scrolling
-   ============================================================================ */
-
-html {
-  scroll-behavior: smooth;
+  outline: 2px solid var(--color-amber);
 }
 
 /* ============================================================================
@@ -318,12 +344,4 @@ html {
   .swiggy-shadow {
     box-shadow: 0 0 0 2px currentColor;
   }
-}
-
-/* ============================================================================
-   Dark Mode Support (Future Enhancement)
-   ============================================================================ */
-
-@media (prefers-color-scheme: dark) {
-  /* Dark mode styles can be added here in future */
 }
