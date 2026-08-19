@@ -30,20 +30,20 @@ export const useCartStore = create<CartState>()(
           if (existingItem) {
             console.log('Cart Store - Updating existing item');
             // Update quantity if item already exists
-            return {
-              items: state.items.map((i) =>
-                i.menu_item_id === item.menu_item_id
-                  ? { ...i, quantity: item.quantity }
-                  : i
-              ),
-            };
+            const newItems = state.items.map((i) =>
+              i.menu_item_id === item.menu_item_id
+                ? { ...i, quantity: item.quantity }
+                : i
+            );
+            console.log('Cart Store - Updated items:', newItems);
+            return { items: newItems };
           }
 
           console.log('Cart Store - Adding new item');
           // Add new item
-          return {
-            items: [...state.items, item],
-          };
+          const newItems = [...state.items, item];
+          console.log('Cart Store - New items array:', newItems);
+          return { items: newItems };
         });
         console.log('Cart Store - After update:', get().items);
       },

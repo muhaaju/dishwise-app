@@ -8,6 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useCartStore } from '@/lib/store/cart';
 import { formatCurrency, calculatePickupTime, formatDate } from '@/lib/utils/calculations';
+import GoogleAuth from '@/components/customer/GoogleAuth';
+import type { User } from '@supabase/supabase-js';
 
 // Payment method types
 type PaymentMethod = 'pay_at_pickup' | 'online_porter_delivery' | 'online_restaurant_delivery';
@@ -48,9 +50,36 @@ export default function CheckoutPage() {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
   });
+
+  // Handle Google Auth success - auto-fill form with profile data
+  const handleAuthSuccess = (user: User, profile?: any) => {
+    // Priority: Use customer profile data if available, fallback to user metadata
+    if (profile?.full_name || user.user_metadata?.full_name) {
+      setValue('customer_name', profile?.full_name || user.user_metadata.full_name);
+    }
+    
+    if (profile?.email || user.email) {
+      setValue('customer_email', profile?.email || user.email);
+    }
+    
+    // Auto-fill phone from profile or user metadata
+    if (profile?.phone) {
+      const phone = profile.phone.replace(/^\+91/, '');
+      setValue('customer_phone', phone);
+    } else if (user.user_metadata?.phone) {
+      const phone = user.user_metadata.phone.replace(/^\+91/, '');
+      setValue('customer_phone', phone);
+    }
+    
+    // Auto-fill default address if available
+    if (profile?.default_address) {
+      setValue('delivery_address', profile.default_address);
+    }
+  };
 
   const subtotal = getSubtotal();
   const savings = getSavings();
@@ -232,7 +261,10 @@ export default function CheckoutPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8">
           {/* Checkout Form - Left Side */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 space-y-6">
+            {/* Google Auth Component */}
+            <GoogleAuth onAuthSuccess={handleAuthSuccess} />
+
             <div className="bg-white rounded-2xl shadow-card p-6">
               <h2 className="text-2xl font-display font-bold text-primary mb-6">
                 Customer Details

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { MenuItem } from '@/types/database';
 import { calculateSavings, formatCurrency, getSpiceLevelEmoji } from '@/lib/utils/calculations';
@@ -13,9 +13,21 @@ interface MenuItemCardProps {
 
 export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardProps) {
   const [showBreakdown, setShowBreakdown] = useState(false);
-  const [quantity, setQuantity] = useState(0);
   const [isAdding, setIsAdding] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  
+  // Get cart items and addItem function from store
+  const cartItems = useCartStore((state) => state.items);
   const addItem = useCartStore((state) => state.addItem);
+  
+  // Handle hydration - wait for client-side mount
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
+  // Find current quantity from cart store - only after mount to avoid hydration mismatch
+  const cartItem = isMounted ? cartItems.find(item => item.menu_item_id === menuItem.id) : null;
+  const quantity = cartItem?.quantity || 0;
 
   // Calculate savings from aggregator prices
   const swiggyPrice = menuItem.swiggy_price || 0;
@@ -52,11 +64,6 @@ export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardP
       });
       
       console.log('Item added successfully');
-      
-      // Update local quantity state if adding from ADD button
-      if (quantity === 0 && qty === undefined) {
-        setQuantity(1);
-      }
     } catch (error) {
       console.error('Error adding to cart:', error);
     }
@@ -317,9 +324,11 @@ export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardP
                       <button
                         onClick={() => {
                           const newQty = Math.max(0, quantity - 1);
-                          setQuantity(newQty);
                           if (newQty > 0) {
                             handleAddToCart(newQty);
+                          } else {
+                            // Remove from cart if quantity becomes 0
+                            useCartStore.getState().removeItem(menuItem.id);
                           }
                         }}
                         className="w-7 h-7 flex items-center justify-center text-primary hover:bg-white rounded-md transition-all font-bold"
@@ -330,7 +339,6 @@ export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardP
                       <button
                         onClick={() => {
                           const newQty = Math.min(10, quantity + 1);
-                          setQuantity(newQty);
                           handleAddToCart(newQty);
                         }}
                         disabled={quantity >= 10}
