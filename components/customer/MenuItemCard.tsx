@@ -277,17 +277,26 @@ export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardP
           </div>
 
           {/* Add to Cart Section */}
-          <div className="w-full">
+          <div className="w-full min-w-[112px]">
+            {console.log('MenuItemCard render:', { 
+              name: menuItem.name, 
+              is_available: menuItem.is_available, 
+              quantity 
+            })}
             {menuItem.is_available ? (
               <div className="space-y-3">
                 {quantity === 0 ? (
                   /* Initial Add Button - Directly adds to cart */
                   <button
-                    onClick={handleAddToCart}
+                    onClick={(e) => {
+                      console.log('ADD button clicked!', menuItem.name);
+                      handleAddToCart();
+                    }}
                     disabled={isAdding}
-                    className={`w-full px-4 py-2.5 bg-gradient-to-r from-cta to-cta-dark text-white rounded-lg font-bold hover:shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm ${
+                    className={`w-full min-h-[40px] px-4 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-bold hover:shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm ${
                       isAdding ? 'opacity-75 cursor-not-allowed' : ''
                     }`}
+                    style={{ minWidth: '112px' }}
                   >
                     {isAdding ? (
                       <>
