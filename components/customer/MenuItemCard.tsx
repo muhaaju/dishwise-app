@@ -278,11 +278,6 @@ export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardP
 
           {/* Add to Cart Section */}
           <div className="w-full min-w-[112px]">
-            {console.log('MenuItemCard render:', { 
-              name: menuItem.name, 
-              is_available: menuItem.is_available, 
-              quantity 
-            })}
             {menuItem.is_available ? (
               <div className="space-y-3">
                 {quantity === 0 ? (

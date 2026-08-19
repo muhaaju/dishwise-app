@@ -130,6 +130,7 @@ export default function ShoppingCart() {
       {/* Cart Sidebar - Only show when cart has items */}
       {isOpen && itemCount > 0 && (
         <>
+          {console.log('Cart Sidebar - Rendering with items:', items, 'itemCount:', itemCount)}
           {/* Backdrop with Blur */}
           <div
             className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm animate-fade-in"
@@ -161,7 +162,13 @@ export default function ShoppingCart() {
 
             {/* Cart Items - Scrollable with Custom Scrollbar */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-background">
-              {items.map((item, index) => (
+              {items.length === 0 ? (
+                <div className="text-center py-8 text-text-muted">
+                  <p>No items in cart</p>
+                  <p className="text-sm">Item count: {itemCount}</p>
+                </div>
+              ) : (
+                items.map((item, index) => (
                 <div 
                   key={item.menu_item_id} 
                   className="bg-white rounded-2xl p-5 shadow-card hover:shadow-lg transition-all border border-gray-100"
@@ -233,7 +240,8 @@ export default function ShoppingCart() {
                     </div>
                   )}
                 </div>
-              ))}
+                ))
+              )}
             </div>
 
             {/* Cart Summary - Fixed at Bottom */}
