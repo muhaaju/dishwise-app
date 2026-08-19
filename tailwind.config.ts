@@ -40,10 +40,26 @@ const config: Config = {
         'bg-card': '#FFFFFF',
         'bg-footer': '#2B2B2B',
         'bg-hero': '#2B2B2B',
+        background: '#F5F5F5',
         // Text Colors
         'text-main': '#2B2B2B',
         'text-secondary': 'rgba(43, 43, 43, 0.7)',
         'text-muted': 'rgba(43, 43, 43, 0.5)',
+        text: {
+          DEFAULT: '#2B2B2B',
+          muted: 'rgba(43, 43, 43, 0.5)',
+          secondary: 'rgba(43, 43, 43, 0.7)',
+        },
+        // CTA Colors
+        cta: {
+          DEFAULT: '#FFBE29',
+          dark: '#E6A824',
+        },
+        // Highlight Colors
+        highlight: {
+          DEFAULT: '#4CAF50',
+          dark: '#388E3C',
+        },
         // Gray Scale
         gray: {
           50: '#FAFAFA',

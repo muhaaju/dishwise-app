@@ -89,7 +89,7 @@ export default function ShoppingCart() {
           /* Cart with Items - Enhanced with Savings */
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`bg-gradient-to-r from-cta to-cta-dark text-white px-8 py-5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-4 group hover:scale-105 ${
+          className={`bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-5 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 flex items-center gap-4 group hover:scale-105 ${
             isAnimating ? 'animate-bounce' : ''
           }`}
         >
@@ -98,7 +98,7 @@ export default function ShoppingCart() {
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            <span className="absolute -top-2 -right-2 bg-white text-cta text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-lg animate-pulse">
+            <span className="absolute -top-2 -right-2 bg-white text-orange-500 text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-lg animate-pulse">
               {itemCount}
             </span>
           </div>
@@ -140,7 +140,7 @@ export default function ShoppingCart() {
           {/* Cart Panel - Slides from Right */}
           <div className="fixed right-0 top-0 h-full w-full max-w-lg bg-white shadow-2xl z-50 flex flex-col animate-slide-in-right">
             {/* Header - Gradient */}
-            <div className="bg-gradient-to-r from-primary to-primary-light text-white p-6 flex items-center justify-between shadow-lg">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-400 text-white p-6 flex items-center justify-between shadow-lg">
               <div>
                 <h2 className="text-3xl font-display font-bold mb-1">Your Cart</h2>
                 <p className="text-sm opacity-90 flex items-center gap-2">
@@ -161,9 +161,9 @@ export default function ShoppingCart() {
             </div>
 
             {/* Cart Items - Scrollable with Custom Scrollbar */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-background">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
               {items.length === 0 ? (
-                <div className="text-center py-8 text-text-muted">
+                <div className="text-center py-8 text-gray-500">
                   <p>No items in cart</p>
                   <p className="text-sm">Item count: {itemCount}</p>
                 </div>
@@ -177,8 +177,8 @@ export default function ShoppingCart() {
                   {/* Item Header */}
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex-1 pr-4">
-                      <h3 className="font-bold text-primary text-lg mb-1 line-clamp-1">{item.name}</h3>
-                      <p className="text-sm text-text-muted flex items-center gap-1">
+                      <h3 className="font-bold text-orange-500 text-lg mb-1 line-clamp-1">{item.name}</h3>
+                      <p className="text-sm text-gray-600 flex items-center gap-1">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
@@ -187,7 +187,7 @@ export default function ShoppingCart() {
                     </div>
                     <button
                       onClick={() => removeItem(item.menu_item_id)}
-                      className="text-text-muted hover:text-red-500 transition-colors p-1 hover:bg-red-50 rounded-lg"
+                      className="text-gray-500 hover:text-red-500 transition-colors p-1 hover:bg-red-50 rounded-lg"
                       title="Remove item"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -202,14 +202,14 @@ export default function ShoppingCart() {
                     <div className="flex items-center gap-2 bg-gray-100 rounded-xl p-1.5 border border-gray-200">
                       <button
                         onClick={() => updateQuantity(item.menu_item_id, item.quantity - 1)}
-                        className="w-9 h-9 flex items-center justify-center text-primary hover:bg-white rounded-lg transition-all font-bold text-lg active:scale-95"
+                        className="w-9 h-9 flex items-center justify-center text-orange-500 hover:bg-white rounded-lg transition-all font-bold text-lg active:scale-95"
                       >
                         −
                       </button>
-                      <span className="w-10 text-center font-bold text-lg text-primary">{item.quantity}</span>
+                      <span className="w-10 text-center font-bold text-lg text-orange-500">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.menu_item_id, item.quantity + 1)}
-                        className="w-9 h-9 flex items-center justify-center text-primary hover:bg-white rounded-lg transition-all font-bold text-lg active:scale-95"
+                        className="w-9 h-9 flex items-center justify-center text-orange-500 hover:bg-white rounded-lg transition-all font-bold text-lg active:scale-95"
                       >
                         +
                       </button>
@@ -217,11 +217,11 @@ export default function ShoppingCart() {
 
                     {/* Price Display */}
                     <div className="text-right">
-                      <div className="font-bold text-primary font-mono text-xl">
+                      <div className="font-bold text-orange-500 font-mono text-xl">
                         {formatCurrency(item.price * item.quantity)}
                       </div>
                       {(item.swiggy_price || item.zomato_price) && (
-                        <div className="text-sm text-text-muted line-through font-mono">
+                        <div className="text-sm text-gray-500 line-through font-mono">
                           {formatCurrency((item.swiggy_price || item.zomato_price || 0) * item.quantity)}
                         </div>
                       )}
@@ -232,8 +232,8 @@ export default function ShoppingCart() {
                   {(item.swiggy_price || item.zomato_price) && (
                     <div className="mt-3 pt-3 border-t border-gray-100">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-text-muted">Savings on this item</span>
-                        <span className="font-bold text-highlight-dark">
+                        <span className="text-gray-600">Savings on this item</span>
+                        <span className="font-bold text-green-600">
                           {formatCurrency(((item.swiggy_price || item.zomato_price || 0) - item.price) * item.quantity)}
                         </span>
                       </div>
@@ -248,18 +248,18 @@ export default function ShoppingCart() {
             <div className="border-t border-gray-200 p-6 space-y-5 bg-white shadow-2xl">
               {/* Total Savings - Highlighted */}
               {savings > 0 && (
-                <div className="bg-gradient-to-r from-highlight/20 to-highlight/10 border-2 border-highlight/30 rounded-2xl p-5">
+                <div className="bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-300 rounded-2xl p-5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-highlight rounded-xl flex items-center justify-center text-2xl">
+                      <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-2xl">
                         💰
                       </div>
                       <div>
-                        <div className="font-bold text-highlight-dark text-lg">Total Savings</div>
-                        <div className="text-sm text-text-muted">vs delivery apps</div>
+                        <div className="font-bold text-green-700 text-lg">Total Savings</div>
+                        <div className="text-sm text-gray-600">vs delivery apps</div>
                       </div>
                     </div>
-                    <div className="text-3xl font-bold text-highlight-dark font-mono">
+                    <div className="text-3xl font-bold text-green-700 font-mono">
                       {formatCurrency(savings)}
                     </div>
                   </div>
@@ -269,23 +269,23 @@ export default function ShoppingCart() {
               {/* Bill Details */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-base">
-                  <span className="text-text-muted">Item Total</span>
-                  <span className="font-semibold font-mono">{formatCurrency(subtotal)}</span>
+                  <span className="text-gray-600">Item Total</span>
+                  <span className="font-semibold font-mono text-gray-900">{formatCurrency(subtotal)}</span>
                 </div>
                 <div className="flex items-center justify-between text-base">
-                  <span className="text-text-muted">Delivery Fee</span>
+                  <span className="text-gray-600">Delivery Fee</span>
                   <span className="font-semibold text-green-600">FREE (Pickup)</span>
                 </div>
                 <div className="flex items-center justify-between text-base">
-                  <span className="text-text-muted">Platform Fee</span>
+                  <span className="text-gray-600">Platform Fee</span>
                   <span className="font-semibold text-green-600">₹0</span>
                 </div>
                 
                 {/* Total */}
                 <div className="pt-3 border-t-2 border-dashed border-gray-300">
                   <div className="flex items-center justify-between text-xl">
-                    <span className="font-bold text-primary">To Pay</span>
-                    <span className="font-bold text-primary font-mono text-2xl">
+                    <span className="font-bold text-orange-500">To Pay</span>
+                    <span className="font-bold text-orange-500 font-mono text-2xl">
                       {formatCurrency(subtotal)}
                     </span>
                   </div>
@@ -296,7 +296,7 @@ export default function ShoppingCart() {
               <div className="space-y-3">
                 {/* Checkout Button - Primary */}
                 <Link href="/checkout" onClick={() => setIsOpen(false)}>
-                  <button className="w-full bg-gradient-to-r from-cta to-cta-dark text-white py-5 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
+                <button className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-5 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-3">
                     <span>Proceed to Checkout</span>
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -307,7 +307,7 @@ export default function ShoppingCart() {
                 {/* Continue Shopping - Secondary */}
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="w-full text-primary font-bold py-3 hover:text-primary-dark transition-colors flex items-center justify-center gap-2"
+                  className="w-full text-orange-500 font-bold py-3 hover:text-orange-600 transition-colors flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
