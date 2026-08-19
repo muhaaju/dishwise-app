@@ -13,7 +13,7 @@ interface MenuItemCardProps {
 
 export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardProps) {
   const [showBreakdown, setShowBreakdown] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
   const [isAdding, setIsAdding] = useState(false);
   const addItem = useCartStore((state) => state.addItem);
 
@@ -260,56 +260,70 @@ export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardP
           <div className="w-full">
             {menuItem.is_available ? (
               <div className="space-y-3">
-                {/* Quantity Selector */}
-                <div className="flex items-center justify-center gap-1 bg-gray-100 rounded-lg p-1 border border-gray-200">
+                {quantity === 0 ? (
+                  /* Initial Add Button */
                   <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    disabled={quantity <= 1}
-                    className="w-7 h-7 flex items-center justify-center text-primary hover:bg-white rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed font-bold"
+                    onClick={() => setQuantity(1)}
+                    className="w-full px-4 py-2.5 bg-gradient-to-r from-cta to-cta-dark text-white rounded-lg font-bold hover:shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm"
                   >
-                    −
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                    <span>ADD</span>
                   </button>
-                  <span className="w-8 text-center font-bold text-primary">{quantity}</span>
-                  <button
-                    onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                    disabled={quantity >= 10}
-                    className="w-7 h-7 flex items-center justify-center text-primary hover:bg-white rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed font-bold"
-                  >
-                    +
-                  </button>
-                </div>
+                ) : (
+                  <>
+                    {/* Quantity Selector */}
+                    <div className="flex items-center justify-center gap-1 bg-gray-100 rounded-lg p-1 border border-gray-200">
+                      <button
+                        onClick={() => setQuantity(Math.max(0, quantity - 1))}
+                        className="w-7 h-7 flex items-center justify-center text-primary hover:bg-white rounded-md transition-all font-bold"
+                      >
+                        −
+                      </button>
+                      <span className="w-8 text-center font-bold text-primary">{quantity}</span>
+                      <button
+                        onClick={() => setQuantity(Math.min(10, quantity + 1))}
+                        disabled={quantity >= 10}
+                        className="w-7 h-7 flex items-center justify-center text-primary hover:bg-white rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed font-bold"
+                      >
+                        +
+                      </button>
+                    </div>
 
-                {/* Add Button - Compact */}
-                <button
-                  onClick={handleAddToCart}
-                  disabled={isAdding}
-                  className={`w-full px-4 py-2.5 bg-gradient-to-r from-cta to-cta-dark text-white rounded-lg font-bold hover:shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm ${
-                    isAdding ? 'opacity-75 cursor-not-allowed' : ''
-                  }`}
-                >
-                  {isAdding ? (
-                    <>
-                      <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      <span>Adding...</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                      </svg>
-                      <span>ADD</span>
-                    </>
-                  )}
-                </button>
+                    {/* Add to Cart Button */}
+                    <button
+                      onClick={handleAddToCart}
+                      disabled={isAdding || quantity === 0}
+                      className={`w-full px-4 py-2.5 bg-gradient-to-r from-cta to-cta-dark text-white rounded-lg font-bold hover:shadow-lg transition-all transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 text-sm ${
+                        isAdding || quantity === 0 ? 'opacity-75 cursor-not-allowed' : ''
+                      }`}
+                    >
+                      {isAdding ? (
+                        <>
+                          <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          <span>Adding...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                          <span>ADD TO CART</span>
+                        </>
+                      )}
+                    </button>
 
-                {/* Subtotal Display */}
-                {quantity > 1 && (
-                  <div className="text-center text-xs text-text-muted">
-                    <span className="font-bold text-primary font-mono">{formatCurrency(directPrice * quantity)}</span>
-                  </div>
+                    {/* Subtotal Display */}
+                    {quantity > 0 && (
+                      <div className="text-center text-xs text-text-muted">
+                        <span className="font-bold text-primary font-mono">{formatCurrency(directPrice * quantity)}</span>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             ) : (
