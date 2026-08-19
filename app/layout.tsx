@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import ShoppingCart from "@/components/customer/ShoppingCart";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
     <html lang="en" className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans antialiased bg-background text-text">
         {children}
+        <ShoppingCart />
       </body>
     </html>
   );

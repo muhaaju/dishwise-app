@@ -553,8 +553,6 @@ export default function RestaurantDetailPage() {
         </div>
       </div>
 
-      {/* Shopping Cart - Floating */}
-      <ShoppingCart />
     </div>
   );
 }
