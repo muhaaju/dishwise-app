@@ -15,6 +15,16 @@ export default function ShoppingCart() {
   const subtotal = getSubtotal();
   const savings = getSavings();
 
+  // Debug logging
+  useEffect(() => {
+    console.log('ShoppingCart - Cart state:', {
+      itemCount,
+      items,
+      subtotal,
+      savings
+    });
+  }, [items, itemCount, subtotal, savings]);
+
   // Handle hydration - wait for client-side mount
   useEffect(() => {
     setIsMounted(true);

@@ -30,21 +30,35 @@ export default function MenuItemCard({ menuItem, restaurantName }: MenuItemCardP
   const handleAddToCart = (qty?: number) => {
     const quantityToAdd = qty !== undefined ? qty : (quantity === 0 ? 1 : quantity);
     
-    setIsAdding(true);
-    addItem({
+    console.log('Adding to cart:', {
       menu_item_id: menuItem.id,
       name: menuItem.name,
       quantity: quantityToAdd,
       price: menuItem.in_shop_price,
-      swiggy_price: menuItem.swiggy_price || undefined,
-      zomato_price: menuItem.zomato_price || undefined,
-      restaurant_id: menuItem.restaurant_id,
-      restaurant_name: restaurantName,
     });
     
-    // Update local quantity state if adding from ADD button
-    if (quantity === 0 && qty === undefined) {
-      setQuantity(1);
+    setIsAdding(true);
+    
+    try {
+      addItem({
+        menu_item_id: menuItem.id,
+        name: menuItem.name,
+        quantity: quantityToAdd,
+        price: menuItem.in_shop_price,
+        swiggy_price: menuItem.swiggy_price || undefined,
+        zomato_price: menuItem.zomato_price || undefined,
+        restaurant_id: menuItem.restaurant_id,
+        restaurant_name: restaurantName,
+      });
+      
+      console.log('Item added successfully');
+      
+      // Update local quantity state if adding from ADD button
+      if (quantity === 0 && qty === undefined) {
+        setQuantity(1);
+      }
+    } catch (error) {
+      console.error('Error adding to cart:', error);
     }
     
     // Reset loading state
