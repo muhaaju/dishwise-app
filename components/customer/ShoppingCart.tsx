@@ -9,7 +9,14 @@ export default function ShoppingCart() {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const { items, updateQuantity, removeItem, getSubtotal, getSavings, getItemCount } = useCartStore();
+  
+  // Subscribe to cart store - this ensures component re-renders on changes
+  const items = useCartStore((state) => state.items);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const getSubtotal = useCartStore((state) => state.getSubtotal);
+  const getSavings = useCartStore((state) => state.getSavings);
+  const getItemCount = useCartStore((state) => state.getItemCount);
 
   const itemCount = getItemCount();
   const subtotal = getSubtotal();
@@ -17,8 +24,9 @@ export default function ShoppingCart() {
 
   // Debug logging
   useEffect(() => {
-    console.log('ShoppingCart - Cart state:', {
+    console.log('ShoppingCart - Cart state changed:', {
       itemCount,
+      itemsLength: items.length,
       items,
       subtotal,
       savings
